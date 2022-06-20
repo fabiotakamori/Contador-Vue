@@ -8,6 +8,13 @@
     <!--tres quarto-->
     <div class="column is-three-quarter">
       <FormFormulario />
+      <div class="lista">
+        <CompTarefa />
+        <CompTarefa />
+        <CompTarefa />
+        <CompTarefa />
+        <CompTarefa />
+      </div>
     </div>
   </main>
 </template>
@@ -16,16 +23,21 @@
 import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue';
 import FormFormulario from './components/Formulario.vue';
+import CompTarefa from "./components/Tarefa.vue"
 
 export default defineComponent({
     name: "App",
     components: { 
       BarraLateral,
-      FormFormulario
+      FormFormulario,
+      CompTarefa
     }
 });
 </script>
 
 <style>
-
+  .lista{
+    padding: 1.25 rem;
+  }
+  
 </style>

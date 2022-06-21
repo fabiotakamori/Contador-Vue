@@ -23,23 +23,22 @@ export default defineComponent({
     emits: ['aoTemaAlterado'],
     data (){
         return{
-            modoEscutoAtivo: true
+            modoEscutoAtivo: false
         }
     },
     computed: {
         textoBotao(){
-            if(this.modoEscutoAtivo){
-               
-                 return "Ativar modo escuro"
-            }
-            return "Desativar modo escurto"
+            if(this.modoEscutoAtivo){  
+                return "Desativar modo escurto"
+            }  
+            return "Ativar modo escuro"
             
         }
     },
     methods:{
         alterarTema(){
             this.modoEscutoAtivo = !this.modoEscutoAtivo
-            this.$emit('aoTemaAlterado', !this.modoEscutoAtivo)
+            this.$emit('aoTemaAlterado', this.modoEscutoAtivo)
         }
     }
 })

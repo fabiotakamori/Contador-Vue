@@ -1,6 +1,6 @@
 <template>
          <section>
-            <strong>
+            <strong class="display">
                 <!--podemos chamar de dessa forma, o vue sabe que é uma propriedade do estado do componente porem calculado-->
                 {{ tempoDecorrido }}
             </strong>
@@ -31,6 +31,9 @@ export default defineComponent({
         }
     },
 })
-
-
 </script>
+<style>
+    .display{
+        color: var(--texto-primario);
+    }
+</style>

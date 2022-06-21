@@ -1,12 +1,12 @@
 <template>
   <!--tudo dentro do main, conteudo da pagina,coluns= colunas, is-gapless = sem espaçamento, is-multiline=multiplas linhas -->
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline modo-escuro">
     <!--um quarto do tamanho da coluna-->
     <div class="column is-one-quarter">
       <BarraLateral />
     </div>
     <!--tres quarto-->
-    <div class="column is-three-quarter">
+    <div class="column is-three-quarter conteudo">
       <!--quando clicar irá executar o evento com @-->
       <FormFormulario @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
@@ -63,6 +63,17 @@ export default defineComponent({
 <style>
   .lista{
     padding: 1.25 rem;
+  }
+  main{
+    --bg-primario: #fff;
+    --texto-primario:#000; 
+  }
+  main.modo-escuro{
+    --bg-primario:#2b2d42;
+    --texto-primario: #ddd;
+  }
+  .conteudo{
+    background-color: var(--bg-primario);
   }
 
 </style>

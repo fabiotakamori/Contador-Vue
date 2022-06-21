@@ -8,7 +8,7 @@
             </div>
             <div class="columns">
                 <!--Quando for acionado o evento aotempo.. ele finaliza a tarefa-->
-                <TempTemporizador @aoTemporizadorFinalizado="finalizarTarefa"/>
+                <TempTemporizador @aoTemporizadorFinalizado="finalizarTarefa" />
             </div>
         </div>
     </div>   
@@ -21,6 +21,8 @@ import TempTemporizador from "./Temporizador.vue"
 
 export default defineComponent({
     name: "FormFormulario",
+    /*emite esse evento*/
+    emits: ['aoSalvarTarefa'],
     components:{
         TempTemporizador
     },
@@ -34,9 +36,12 @@ export default defineComponent({
     methods:{
         /*iremos receber o tempo decorrido, lembre se que ao ser vinalidado no emit é passado o nome do evento e a variavel, como temos
         uma igualdade acima, rebemos aqui em baixo*/
-        finalizarTarefa (tempoDecorrido:number) : void{
-
-            console.log(tempoDecorrido);
+        finalizarTarefa (tempoDecorrido:number) : void{ 
+            /* quando salvar tarefa, nosso form emite um evento e adiciona na lista*/
+            this.$emit('aoSalvarTarefa',{
+                duracaoEmSegundos: tempoDecorrido,
+                descricao: this.descricao
+            })
             console.log(this.descricao)
             this.descricao =''
         }

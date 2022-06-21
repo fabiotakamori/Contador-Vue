@@ -7,13 +7,15 @@
     </div>
     <!--tres quarto-->
     <div class="column is-three-quarter">
-      <FormFormulario />
+      <!--quando clicar irá executar o evento com @-->
+      <FormFormulario @aoSalvarTarefa="salvarTarefa"/>
       <div class="lista">
-        <CompTarefa />
-        <CompTarefa />
-        <CompTarefa />
-        <CompTarefa />
-        <CompTarefa />
+        <!--fazemos interacao, normamente usamos indice retornado do banco no keu-->
+        <CompTarefa v-for="(tarefa,index) in tarefas" :key="index" :tarefa="tarefa"/>
+        <!--Usando v-if para verificar conficional da variavel-->
+        <CompBox v-if="listaEstaVazia">
+          Você não está muito produtivo hoje :(
+        </CompBox>
       </div>
     </div>
   </main>
@@ -24,13 +26,36 @@ import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue';
 import FormFormulario from './components/Formulario.vue';
 import CompTarefa from "./components/Tarefa.vue"
+import ITarefa from "./interfaces/ITarefa"
+import CompBox from "./components/Box.vue"
 
 export default defineComponent({
     name: "App",
     components: { 
       BarraLateral,
       FormFormulario,
-      CompTarefa
+      CompTarefa,
+      CompBox
+      
+    },
+    /*Estado do componente, que retorna um objeto e queremos lista de tarefas*/
+    data(){
+      return {
+        tarefas: [] as ITarefa[]
+      }
+    },
+    computed:{
+      /*retorna true ou false caso esteja vazio, onde usaremos acima*/
+      listaEstaVazia() : boolean{
+        return this.tarefas.length === 0
+      }
+    },
+    methods:{
+      /*recebe ITarefa por parâmetro*/
+      salvarTarefa (tarefa: ITarefa){
+        /**/
+        this.tarefas.push(tarefa)
+      }
     }
 });
 </script>
@@ -39,5 +64,5 @@ export default defineComponent({
   .lista{
     padding: 1.25 rem;
   }
-  
+
 </style>

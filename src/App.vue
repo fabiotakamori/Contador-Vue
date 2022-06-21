@@ -1,9 +1,10 @@
 <template>
   <!--tudo dentro do main, conteudo da pagina,coluns= colunas, is-gapless = sem espaçamento, is-multiline=multiplas linhas -->
-  <main class="columns is-gapless is-multiline modo-escuro">
+  <!--:class="{}" togle da classe-->
+  <main class="columns is-gapless is-multiline" :class="{ 'modo-escuro': modoEscuroAtivo}">
     <!--um quarto do tamanho da coluna-->
     <div class="column is-one-quarter">
-      <BarraLateral />
+      <BarraLateral @ao-tema-alterado="trocarTema" />
     </div>
     <!--tres quarto-->
     <div class="column is-three-quarter conteudo">
@@ -41,7 +42,9 @@ export default defineComponent({
     /*Estado do componente, que retorna um objeto e queremos lista de tarefas*/
     data(){
       return {
-        tarefas: [] as ITarefa[]
+        tarefas: [] as ITarefa[],
+        /*Estado para verificar se o modo esta ativo*/
+        modoEscuroAtivo:false
       }
     },
     computed:{
@@ -55,6 +58,9 @@ export default defineComponent({
       salvarTarefa (tarefa: ITarefa){
         /**/
         this.tarefas.push(tarefa)
+      },
+      trocarTema (modoEscutoAtivo: boolean){
+        this.modoEscuroAtivo = modoEscutoAtivo
       }
     }
 });
